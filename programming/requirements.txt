@@ -1,0 +1,23 @@
+# Quantum Computing Dependencies
+qiskit>=1.0.0
+qiskit-aer>=0.13.0
+qiskit-ibm-runtime>=0.20.0
+
+# Visualization
+matplotlib>=3.7.0
+pylatexenc>=2.10
+
+# Jupyter
+jupyter>=1.0.0
+jupyterlab>=4.0.0
+notebook>=7.0.0
+
+# Game Development (Quantum Pong)
+pygame>=2.5.0
+
+# Data & Math
+numpy>=1.24.0
+scipy>=1.11.0
+
+# TSP Comparison
+networkx>=3.1
