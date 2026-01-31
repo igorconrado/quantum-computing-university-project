@@ -4,11 +4,12 @@ Quantum Paddle - Paddle controlled by quantum mechanics.
 This module implements the quantum logic for the paddle position.
 The paddle exists in superposition until measured.
 
-TODO: Implement the methods below.
+Based on the 'Programming on Quantum Computers' YouTube series.
 """
 
 from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister
 from qiskit_aer import AerSimulator
+from qiskit.quantum_info import Statevector
 
 
 class QuantumPaddle:
@@ -39,9 +40,9 @@ class QuantumPaddle:
 
     def reset(self):
         """Reset the paddle to initial state |0...0⟩."""
-        # TODO: Initialize quantum and classical registers
-        # TODO: Create new circuit
-        pass
+        self.qr = QuantumRegister(self.n_qubits, 'q')
+        self.cr = ClassicalRegister(self.n_qubits, 'c')
+        self.circuit = QuantumCircuit(self.qr, self.cr)
 
     def apply_hadamard(self, qubit: int = None):
         """
@@ -50,9 +51,12 @@ class QuantumPaddle:
         Args:
             qubit: Which qubit to apply H. None = all qubits.
         """
-        # TODO: Apply H gate
-        # If qubit is None, apply to all qubits
-        pass
+        if qubit is None:
+            for i in range(self.n_qubits):
+                self.circuit.h(self.qr[i])
+        else:
+            if 0 <= qubit < self.n_qubits:
+                self.circuit.h(self.qr[qubit])
 
     def apply_x(self, qubit: int):
         """
@@ -61,8 +65,8 @@ class QuantumPaddle:
         Args:
             qubit: Which qubit to flip.
         """
-        # TODO: Apply X gate
-        pass
+        if 0 <= qubit < self.n_qubits:
+            self.circuit.x(self.qr[qubit])
 
     def apply_z(self, qubit: int):
         """
@@ -71,8 +75,8 @@ class QuantumPaddle:
         Args:
             qubit: Which qubit to apply Z.
         """
-        # TODO: Apply Z gate
-        pass
+        if 0 <= qubit < self.n_qubits:
+            self.circuit.z(self.qr[qubit])
 
     def apply_cnot(self, control: int, target: int):
         """
@@ -82,8 +86,8 @@ class QuantumPaddle:
             control: Control qubit index.
             target: Target qubit index.
         """
-        # TODO: Apply CNOT gate
-        pass
+        if 0 <= control < self.n_qubits and 0 <= target < self.n_qubits:
+            self.circuit.cx(self.qr[control], self.qr[target])
 
     def get_probabilities(self) -> list[float]:
         """
@@ -92,9 +96,16 @@ class QuantumPaddle:
         Returns:
             List of probabilities for each position.
         """
-        # TODO: Use Statevector to get probabilities
-        # Return list of length n_positions
-        pass
+        statevector = Statevector(self.circuit)
+        probs_dict = statevector.probabilities_dict()
+
+        probabilities = [0.0] * self.n_positions
+        for bitstring, prob in probs_dict.items():
+            # Convert binary string to integer (reverse for little-endian)
+            position = int(bitstring, 2)
+            probabilities[position] = prob
+
+        return probabilities
 
     def measure(self) -> int:
         """
@@ -103,11 +114,27 @@ class QuantumPaddle:
         Returns:
             int: The measured position (0 to n_positions-1).
         """
-        # TODO: Add measurements to circuit
-        # TODO: Run on simulator with shots=1
-        # TODO: Parse result and return position
-        # TODO: Reset circuit for next measurement
-        pass
+        # Create a copy of circuit for measurement
+        measure_circuit = self.circuit.copy()
+        measure_circuit.measure(self.qr, self.cr)
+
+        # Run simulation with single shot
+        job = self.simulator.run(measure_circuit, shots=1)
+        result = job.result()
+        counts = result.get_counts()
+
+        # Get the measured bitstring
+        measured_bitstring = list(counts.keys())[0]
+        position = int(measured_bitstring, 2)
+
+        # Reset circuit to the collapsed state
+        self.reset()
+        # Set the circuit to the measured state using X gates
+        for i in range(self.n_qubits):
+            if (position >> i) & 1:
+                self.circuit.x(self.qr[i])
+
+        return position
 
     def get_position_normalized(self) -> float:
         """
