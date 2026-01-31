@@ -3,8 +3,6 @@ TSP Brute Force Solution - O(n!)
 
 This is intentionally inefficient to demonstrate the classical limitation.
 Watch the execution time explode as you add more cities!
-
-TODO: Implement the algorithm.
 """
 
 from itertools import permutations
@@ -24,9 +22,7 @@ def calculate_distance(city1: tuple, city2: tuple) -> float:
     Returns:
         float: distance between cities
     """
-    # TODO: Implement Euclidean distance formula
-    # sqrt((x2-x1)^2 + (y2-y1)^2)
-    pass
+    return math.sqrt((city2[0] - city1[0])**2 + (city2[1] - city1[1])**2)
 
 
 def calculate_total_distance(route: list, coordinates: list) -> float:
@@ -40,9 +36,12 @@ def calculate_total_distance(route: list, coordinates: list) -> float:
     Returns:
         float: total distance of the route
     """
-    # TODO: Sum distances between consecutive cities
-    # Don't forget to return to starting city!
-    pass
+    total = 0.0
+    for i in range(len(route)):
+        city1 = coordinates[route[i]]
+        city2 = coordinates[route[(i + 1) % len(route)]]
+        total += calculate_distance(city1, city2)
+    return total
 
 
 def tsp_brute_force(coordinates: list) -> tuple:
@@ -61,17 +60,25 @@ def tsp_brute_force(coordinates: list) -> tuple:
 
     start_time = time.time()
 
-    # TODO: Implement brute force algorithm
-    # 1. Fix first city (optimization: reduces n! to (n-1)!)
-    # 2. Try all permutations of remaining cities
-    # 3. Calculate total distance for each
-    # 4. Keep track of minimum
-
     best_route = None
     best_distance = float('inf')
     permutations_checked = 0
 
-    # Your code here...
+    # Fix first city at index 0 to reduce permutations from n! to (n-1)!
+    other_cities = list(range(1, n))
+
+    for perm in permutations(other_cities):
+        route = [0] + list(perm)
+        distance = calculate_total_distance(route, coordinates)
+        permutations_checked += 1
+
+        if distance < best_distance:
+            best_distance = distance
+            best_route = route
+
+        # Progress indicator for large datasets
+        if permutations_checked % 10000 == 0:
+            print(f"  Checked {permutations_checked:,} permutations...")
 
     execution_time = time.time() - start_time
 
@@ -126,10 +133,7 @@ if __name__ == "__main__":
         cities, coords = load_cities(data_path, dataset)
         route, distance, exec_time, perms = tsp_brute_force(coords)
 
-        if route:
-            print_results(cities, route, distance, exec_time, perms)
-        else:
-            print("TODO: Implement the algorithm!")
+        print_results(cities, route, distance, exec_time, perms)
 
         print()
 
