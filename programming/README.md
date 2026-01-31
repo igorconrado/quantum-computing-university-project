@@ -22,6 +22,12 @@ programming/
 │   ├── utils/              # Graph generation and visualization
 │   └── data/               # Test datasets (cities.json)
 │
+├── quantum-ibm-platform/   # IBM Quantum SDK wrapper
+│   ├── config/             # Configuration and credentials
+│   ├── src/                # Authentication, circuits, utilities
+│   ├── notebooks/          # Jupyter notebooks
+│   └── tests/              # Unit tests
+│
 └── testing/                # Basic Qiskit tests
 ```
 
@@ -70,6 +76,24 @@ Core dependencies:
 | 02_multi_qubit_circuits.ipynb | CNOT, CZ, SWAP, Toffoli |
 | 03_bell_states.ipynb | Entanglement and Bell states |
 | 04_quantum_teleportation.ipynb | Quantum teleportation protocol |
+
+## IBM Quantum Platform SDK
+
+Wrapper for running experiments on IBM Quantum hardware:
+
+```bash
+# Local simulation (no IBM account needed)
+python quantum-ibm-platform/src/examples/hello_world.py --mode local
+
+# Run on IBM Quantum hardware
+python quantum-ibm-platform/src/examples/hello_world.py --mode ibm
+```
+
+Features:
+- Secure credential management via environment variables
+- Local simulation for testing before using real hardware
+- Automatic transpilation for target backends
+- Job tracking and result retrieval
 
 ## TSP Comparison
 
