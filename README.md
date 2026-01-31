@@ -35,11 +35,10 @@ quantum-computing-university-project/
 │   │   ├── classical/          # Brute force, Nearest Neighbor, SA
 │   │   ├── quantum_inspired/   # QUBO solver
 │   │   └── utils/              # Visualization, graph generation
+│   ├── quantum-ibm-platform/   # IBM Quantum SDK wrapper
 │   └── exercises/              # Textbook exercises
 │       ├── chapter_09/         # Quantum algorithms
 │       └── chapter_10/         # Practical worksheets
-│
-├── quantum-ibm-platform/       # IBM Quantum SDK wrapper
 │
 └── tests/                      # Unit tests
 ```
