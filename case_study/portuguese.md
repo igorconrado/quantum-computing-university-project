@@ -324,7 +324,7 @@ O Case 10 da KPMG/TDC Net representa um marco na transição da computação qu�
 
 4. **Maturidade crescente**: O ecossistema de solvers QIO está em rápida evolução, com redução de custos e aumento de acessibilidade previstos para os próximos anos.
 
-Para o profissional de tecnologia, a lição estratégica é clara: investir no domínio de **formulações matemáticas** (QUBO, Ising, QAOA) posiciona-se na fronteira entre o paradigma clássico atual e o paradigma quântico emergente.
+Para o profissional de tecnologia, a implicação prática é evidente: investir no domínio de **formulações matemáticas** (QUBO, Ising, QAOA) posiciona o profissional na fronteira entre o paradigma clássico atual e o paradigma quântico emergente.
 
 ---
 
