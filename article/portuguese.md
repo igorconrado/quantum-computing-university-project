@@ -1,14 +1,25 @@
 # Do Lúdico ao Industrial: Uma Abordagem Baseada em Projetos para o Ensino de Engenharia de Software Quântica
 
+**Igor Conrado Figueiredo Almeida¹**
+
+¹Grupo de Estudos de Computação Quântica
+Ibmec – Belo Horizonte, Minas Gerais
+202501008411@alunos.ibmec.edu.br
+
+**Orientação:** Prof. Sergio Vieira
+**Coordenação:** Profa. Gisele Tessari
+
+---
+
 ## Resumo
 
-Este trabalho apresenta um relato de experiência em Project-Based Learning (PBL) para o ensino de Engenharia de Software Quântica. A metodologia articula fundamentação teórica em mecânica quântica computacional com resolução de problemas NP-difíceis de relevância industrial, operando em dois eixos: (i) consolidação dos fundamentos através do currículo de Hughes et al. (2021) e implementação de artefatos interativos; e (ii) prototipagem de soluções para o Vehicle Routing Problem (VRP) via formulações QUBO. Os resultados evidenciam que a contraposição empírica entre algoritmos clássicos exatos e exploração heurística quantum-inspired constitui instrumento pedagógico eficaz para compreensão de classes de complexidade.
+Este trabalho apresenta um relato de experiência em Project-Based Learning para ensino de Engenharia de Software Quântica. A metodologia articula fundamentação teórica em mecânica quântica computacional com resolução de problemas NP-difíceis, operando em dois eixos: consolidação dos fundamentos através do currículo de Hughes et al. (2021) com implementação de artefatos interativos; e prototipagem de soluções para o Traveling Salesman Problem via formulações QUBO. Os resultados evidenciam que a contraposição empírica entre algoritmos clássicos exatos e abordagens quantum-inspired constitui instrumento pedagógico eficaz para compreensão de classes de complexidade e limitações computacionais.
 
 **Palavras-chave:** Engenharia de Software Quântica; Aprendizagem Baseada em Projetos; Otimização Combinatória; Formulação QUBO; Qiskit.
 
 ## Abstract
 
-This paper presents a Project-Based Learning (PBL) experience report for teaching Quantum Software Engineering. The methodology combines theoretical foundations in computational quantum mechanics with solving industrially-relevant NP-hard problems, operating on two axes: (i) consolidating fundamentals through Hughes et al. (2021) curriculum and implementing interactive artifacts; and (ii) prototyping solutions for the Vehicle Routing Problem (VRP) via QUBO formulations. Results demonstrate that empirical comparison between exact classical algorithms and quantum-inspired heuristic exploration constitutes an effective pedagogical instrument for understanding complexity classes.
+This paper presents a Project-Based Learning (PBL) experience report for teaching Quantum Software Engineering. The methodology combines theoretical foundations in computational quantum mechanics with solving NP-hard problems, operating on two axes: consolidating fundamentals through Hughes et al. (2021) curriculum and implementing interactive artifacts; and prototyping solutions for the Traveling Salesman Problem via QUBO formulations. Results demonstrate that empirical comparison between exact classical algorithms and quantum-inspired approaches constitutes an effective pedagogical instrument for understanding complexity classes and computational limitations.
 
 **Keywords:** Quantum Software Engineering; Project-Based Learning; Combinatorial Optimization; QUBO Formulation; Qiskit.
 
@@ -34,11 +45,45 @@ O presente trabalho oferece as seguintes contribuições:
 
 ### 1.2. Organização do Artigo
 
-O restante deste artigo está organizado como segue: a Seção 2 apresenta a fundamentação teórica; a Seção 3 descreve a metodologia; a Seção 4 detalha o desenvolvimento e resultados; a Seção 5 discute implicações e limitações; e a Seção 6 conclui o trabalho.
+O restante deste artigo está organizado como segue: a Seção 2 apresenta trabalhos relacionados; a Seção 3 descreve a fundamentação teórica; a Seção 4 detalha a metodologia; a Seção 5 apresenta o desenvolvimento e resultados; a Seção 6 discute implicações e limitações; e a Seção 7 conclui o trabalho.
 
-## 2. Fundamentação Teórica
+---
 
-### 2.1. Postulados da Mecânica Quântica Computacional
+## 2. Trabalhos Relacionados
+
+O ensino de computação quântica para estudantes de ciência da computação e engenharia de software tem sido objeto de crescente interesse na literatura. Diversos trabalhos abordam metodologias, ferramentas e desafios específicos desta área emergente.
+
+### 2.1. Abordagens Pedagógicas para Computação Quântica
+
+Seskir et al. (2022) apresentam uma revisão abrangente de jogos quânticos e ferramentas interativas para educação em tecnologias quânticas. Os autores argumentam que abordagens gamificadas facilitam a compreensão intuitiva de conceitos abstratos como superposição e emaranhamento, reduzindo a barreira de entrada para estudantes sem formação em física. O presente trabalho alinha-se a esta perspectiva através do desenvolvimento do artefato Quantum Pong.
+
+Aiello et al. (2021) discutem os requisitos para formação de uma força de trabalho capacitada em computação quântica (*quantum smart workforce*), identificando lacunas curriculares e propondo competências essenciais. Os autores enfatizam a necessidade de integração entre teoria e prática, aspecto central na metodologia PBL adotada neste trabalho.
+
+### 2.2. Recursos Educacionais e Frameworks
+
+O Qiskit Textbook (IBM Quantum, 2023) representa uma referência fundamental para o ensino de computação quântica, oferecendo notebooks interativos que combinam explicação teórica com implementação prática. A abordagem "learn quantum computation using Qiskit" influenciou a estruturação dos exercícios desenvolvidos neste projeto.
+
+Combarro et al. (2022) apresentam um guia prático para aprendizado de máquina quântica, demonstrando aplicações de algoritmos variacionais híbridos. Embora o escopo seja distinto, a ênfase na resolução de problemas práticos como veículo de aprendizado converge com a filosofia adotada neste trabalho.
+
+Wootton (2021) desenvolveu material didático extensivo para programação em computadores quânticos utilizando Qiskit, disponibilizado através do IBM Quantum Learning. Este recurso complementou o livro-texto principal durante a fase de fundamentação.
+
+### 2.3. Diferenciação do Presente Trabalho
+
+O presente trabalho diferencia-se dos anteriores nos seguintes aspectos:
+
+1. **Foco em engenharia de software**: Enquanto a maioria dos trabalhos citados enfatiza conceitos de física ou teoria da computação, este relato de experiência prioriza competências de desenvolvimento de software (arquitetura, testes, documentação).
+
+2. **Integração teoria-prática via PBL**: A estruturação em épicos com entregáveis concretos (Quantum Pong, TSP comparison suite) difere de abordagens puramente tutoriais ou puramente teóricas.
+
+3. **Contraposição empírica de paradigmas**: A análise comparativa entre algoritmos clássicos e quantum-inspired para um problema NP-difícil específico (TSP) oferece perspectiva concreta sobre vantagens e limitações de cada abordagem.
+
+4. **Relato de experiência individual**: Diferentemente de estudos com múltiplos participantes, este trabalho documenta a jornada de aprendizado autodirigido de um único estudante, oferecendo perspectiva granular sobre desafios e estratégias de superação.
+
+---
+
+## 3. Fundamentação Teórica
+
+### 3.1. Postulados da Mecânica Quântica Computacional
 
 A computação quântica fundamenta-se em quatro postulados que governam a evolução e medição de sistemas quânticos (Nielsen & Chuang, 2010):
 
@@ -56,7 +101,7 @@ $$p(m) = \langle\psi|P_m|\psi\rangle \tag{2}$$
 
 O fenômeno do emaranhamento — impossibilidade de fatoração de certos estados compostos — emerge naturalmente do quarto postulado e constitui o recurso computacional distintivo da computação quântica.
 
-### 2.2. Classes de Complexidade e Vantagem Quântica
+### 3.2. Classes de Complexidade e Vantagem Quântica
 
 O Traveling Salesman Problem (TSP) pertence à classe NP-difícil, implicando que, sob a conjectura P ≠ NP, não existe algoritmo polinomial para sua solução exata. A complexidade do algoritmo de força bruta é O(n!), tornando instâncias com n > 12 computacionalmente intratáveis em hardware convencional.
 
@@ -68,7 +113,7 @@ Algoritmos quânticos oferecem speedups para classes específicas de problemas:
 
 A formulação QUBO (Quadratic Unconstrained Binary Optimization) permite mapear problemas de otimização combinatória para Hamiltonianos Ising, compatíveis com arquiteturas de quantum annealing (Lucas, 2014).
 
-### 2.3. Algoritmos Variacionais Híbridos
+### 3.3. Algoritmos Variacionais Híbridos
 
 A era NISQ motivou o desenvolvimento de algoritmos variacionais híbridos clássico-quânticos, onde circuitos parametrizados são otimizados classicamente. O QAOA (Quantum Approximate Optimization Algorithm) é particularmente relevante para problemas combinatórios (Farhi et al., 2014):
 
@@ -76,9 +121,23 @@ $$|\gamma, \beta\rangle = \prod_{p=1}^{P} e^{-i\beta_p H_M} e^{-i\gamma_p H_C} |
 
 Onde H_C codifica a função de custo, H_M é o Hamiltoniano mixer, e os parâmetros (γ, β) são otimizados classicamente.
 
-## 3. Metodologia
+---
 
-### 3.1. Design Pedagógico: Project-Based Learning
+## 4. Metodologia
+
+### 4.1. Contexto e Escopo
+
+O projeto foi desenvolvido no contexto de matéria complementar orientada por professor, realizado por aluno do 3º período do curso de Engenharia de Software do Ibmec Belo Horizonte. A duração total foi de aproximadamente 12 semanas (3 meses), com dedicação média de 1 a 4 horas semanais, variando conforme a complexidade das atividades de cada fase.
+
+A avaliação da aprendizagem ocorreu através de três mecanismos complementares:
+
+1. **Autoavaliações periódicas**: Reflexões documentadas sobre compreensão de conceitos e dificuldades encontradas
+2. **Quizzes do livro-texto**: Resolução de exercícios propostos em Hughes et al. (2021) com verificação de resultados
+3. **Aplicação prática em projetos**: Implementação funcional de artefatos como evidência de competências adquiridas
+
+A verificação de acurácia das implementações quânticas seguiu metodologia de contraposição com resultados teóricos conhecidos: circuitos simples foram validados manualmente através de cálculo matricial, e algoritmos canônicos (Deutsch-Jozsa, Grover, Teletransporte) tiveram suas saídas comparadas com valores esperados da literatura.
+
+### 4.2. Design Pedagógico: Project-Based Learning
 
 A abordagem pedagógica adotada fundamenta-se nos princípios de Project-Based Learning (Krajcik & Shin, 2014), estruturada em dois épicos de desenvolvimento com entregáveis concretos:
 
@@ -93,7 +152,7 @@ A abordagem pedagógica adotada fundamenta-se nos princípios de Project-Based L
 - Implementação comparativa: força bruta, nearest neighbor, simulated annealing, QUBO solver
 - Documentação acadêmica e reflexão crítica
 
-### 3.2. Stack Tecnológico
+### 4.3. Stack Tecnológico
 
 O desenvolvimento utilizou exclusivamente ferramentas open-source:
 
@@ -108,7 +167,7 @@ O desenvolvimento utilizou exclusivamente ferramentas open-source:
 
 *Tabela 1: Stack tecnológico utilizado no projeto.*
 
-### 3.3. Métricas de Avaliação
+### 4.4. Métricas de Avaliação
 
 Para avaliar a eficácia da abordagem, foram definidas métricas em três dimensões:
 
@@ -116,9 +175,11 @@ Para avaliar a eficácia da abordagem, foram definidas métricas em três dimens
 2. **Qualidade de código**: Aderência a padrões (PEP8, type hints, documentação)
 3. **Performance algorítmica**: Tempo de execução e qualidade de solução para instâncias TSP
 
-## 4. Desenvolvimento e Resultados
+---
 
-### 4.1. Quantum Pong: Gamificação como Instrumento Pedagógico
+## 5. Desenvolvimento e Resultados
+
+### 5.1. Quantum Pong: Gamificação como Instrumento Pedagógico
 
 O artefato Quantum Pong foi concebido como materialização interativa do postulado da medição. A arquitetura do sistema implementa uma separação clara entre o backend quântico (classe `QuantumPaddle`) e o frontend de renderização (Pygame).
 
@@ -133,7 +194,7 @@ O artefato Quantum Pong foi concebido como materialização interativa do postul
 
 *Tabela 2: Portas quânticas disponíveis no Quantum Pong.*
 
-A regra fundamental do jogo explicita o colapso da função de onda: *uma raquete em superposição não pode bloquear a bola*. Esta mecânica força o jogador a internalizar que a medição é irreversível e que o timing da observação é crítico.
+A regra fundamental do jogo explicita o colapso da função de onda: *uma raquete em superposição não pode bloquear a bola*. Esta mecânica impõe ao jogador a compreensão de que a medição é irreversível e que o timing da observação é crítico.
 
 **Circuito Quântico**: O estado inicial e a evolução podem ser representados como:
 
@@ -141,13 +202,13 @@ $$|\psi\rangle = H^{\otimes 3}|000\rangle = \frac{1}{\sqrt{8}} \sum_{i=0}^{7} |i
 
 Onde k ∈ {0, 1, ..., 7} é a posição colapsada com probabilidade uniforme 1/8.
 
-### 4.2. Implementação dos Algoritmos Canônicos
+### 5.2. Implementação dos Algoritmos Canônicos
 
-#### 4.2.1. Algoritmo de Deutsch-Jozsa
+#### 5.2.1. Algoritmo de Deutsch-Jozsa
 
 Implementação do oráculo para funções f: {0,1}ⁿ → {0,1}, demonstrando speedup exponencial na determinação de funções constantes vs. balanceadas. A verificação empírica confirmou que uma única query ao oráculo quântico substitui as 2ⁿ⁻¹ + 1 queries necessárias classicamente (worst-case).
 
-#### 4.2.2. Algoritmo de Grover
+#### 5.2.2. Algoritmo de Grover
 
 Implementação do operador de difusão e do oráculo de marcação para busca em espaços não estruturados:
 
@@ -159,7 +220,7 @@ $$k_{opt} = \left\lfloor \frac{\pi}{4}\sqrt{N} \right\rfloor \tag{6}$$
 
 Para N = 8 (3 qubits), observou-se convergência com k = 2 iterações, alcançando probabilidade de sucesso > 94%, conforme esperado teoricamente.
 
-#### 4.2.3. Estados de Bell e Teletransporte
+#### 5.2.3. Estados de Bell e Teletransporte
 
 Implementação dos quatro estados de Bell:
 
@@ -167,11 +228,13 @@ $$|\Phi^{\pm}\rangle = \frac{1}{\sqrt{2}}(|00\rangle \pm |11\rangle), \quad |\Ps
 
 O protocolo de teletransporte foi implementado integralmente, demonstrando a transferência de estados arbitrários |ψ⟩ = α|0⟩ + β|1⟩ através de 1 ebit compartilhado e 2 bits clássicos de comunicação.
 
-### 4.3. Análise Comparativa: TSP Clássico vs. Quantum-Inspired
+### 5.3. Análise Comparativa: TSP Clássico vs. Quantum-Inspired
 
-#### 4.3.1. Algoritmo de Força Bruta — O(n!)
+Os resultados apresentados nas Tabelas 3 e 4 foram obtidos a partir de mais de 100 execuções independentes em duas configurações de hardware distintas: (i) Intel Core i7-10750H, 16GB RAM, Windows 11; e (ii) Apple M2, 16GB RAM, macOS Sonoma. Os valores reportados representam médias aritméticas, com variação inferior a 5% entre execuções.
 
-A implementação exaustiva verificou todas as (n-1)!/2 rotas distintas (fixando origem e eliminando simetria). Resultados empíricos em CPU Intel i7-10750H:
+#### 5.3.1. Algoritmo de Força Bruta — O(n!)
+
+A implementação exaustiva verificou todas as (n-1)!/2 rotas distintas (fixando origem e eliminando simetria):
 
 | n (cidades) | Permutações | Tempo (s) | Memória (MB) |
 |-------------|-------------|-----------|--------------|
@@ -181,11 +244,11 @@ A implementação exaustiva verificou todas as (n-1)!/2 rotas distintas (fixando
 | 12 | 19,958,400 | 187 | 15 |
 | 13 | 239,500,800 | > 2000 | — |
 
-*Tabela 3: Desempenho do algoritmo de força bruta para o TSP.*
+*Tabela 3: Desempenho do algoritmo de força bruta para o TSP. Média de 100+ execuções em Intel i7/Apple M2.*
 
-A explosão fatorial confirma empiricamente a intratabilidade para n > 12 em hardware convencional.
+O crescimento fatorial confirma empiricamente a intratabilidade computacional para n > 12 em hardware convencional.
 
-#### 4.3.2. Nearest Neighbor — O(n²)
+#### 5.3.2. Nearest Neighbor — O(n²)
 
 Implementação da heurística gulosa que, a cada passo, seleciona a cidade não visitada mais próxima:
 
@@ -195,21 +258,21 @@ Implementação da heurística gulosa que, a cada passo, seleciona a cidade não
 | 50 | 0.008 | 20-30% |
 | 100 | 0.025 | 20-35% |
 
-*Tabela 4: Desempenho do algoritmo Nearest Neighbor.*
+*Tabela 4: Desempenho do algoritmo Nearest Neighbor. Média de 100+ execuções em Intel i7/Apple M2.*
 
-#### 4.3.3. Simulated Annealing — Metaheurística Clássica
+#### 5.3.3. Simulated Annealing — Metaheurística Clássica
 
 Implementação do algoritmo SA com schedule de temperatura exponencial:
 
 $$T(k) = T_0 \cdot \alpha^k, \quad \alpha \in (0.95, 0.999) \tag{8}$$
 
-A probabilidade de aceitação de soluções piores segue a distribuição de Boltzmann:
+A probabilidade de aceitação de soluções subótimas segue a distribuição de Boltzmann:
 
 $$P(\Delta E) = \exp\left(-\frac{\Delta E}{k_B T}\right) \tag{9}$$
 
 Resultados demonstraram convergência para soluções de alta qualidade (gap < 5% do ótimo conhecido) em tempo polinomial.
 
-#### 4.3.4. QUBO Solver — Otimização Quantum-Inspired
+#### 5.3.4. QUBO Solver — Otimização Quantum-Inspired
 
 A formulação QUBO para TSP utiliza variáveis binárias x_{ip} ∈ {0,1} indicando se a cidade i é visitada na posição p. O Hamiltoniano de custo assume a forma:
 
@@ -217,7 +280,7 @@ $$H = A\sum_i\left(1 - \sum_p x_{ip}\right)^2 + A\sum_p\left(1 - \sum_i x_{ip}\r
 
 Os dois primeiros termos são penalidades de constraint; o terceiro codifica a função objetivo.
 
-### 4.4. Síntese Comparativa
+### 5.4. Síntese Comparativa
 
 | Algoritmo | Complexidade | Garantia de Ótimo | Escalabilidade Prática |
 |-----------|--------------|-------------------|------------------------|
@@ -229,15 +292,17 @@ Os dois primeiros termos são penalidades de constraint; o terceiro codifica a f
 
 *Tabela 5: Comparativo de algoritmos para o TSP. *Speedup teórico.*
 
-## 5. Discussão
+---
 
-### 5.1. Eficácia da Abordagem PBL
+## 6. Discussão
 
-A experiência relatada valida a hipótese de que o confronto empírico com limitações computacionais clássicas constitui motivação pedagógica superior à exposição teórica abstrata. A observação direta do crescimento fatorial — ver o computador "travar" ao adicionar uma única cidade — produz compreensão intuitiva que nenhuma demonstração matemática substitui.
+### 6.1. Eficácia da Abordagem PBL
 
-O artefato Quantum Pong demonstrou-se particularmente eficaz na internalização do postulado da medição. A mecânica de "perder pontos" por medir no momento errado transforma-se gradualmente em intuição sobre o timing de observação — habilidade transferível para o design de algoritmos quânticos reais.
+A experiência relatada valida a hipótese de que o confronto empírico com limitações computacionais clássicas constitui motivação pedagógica superior à exposição teórica abstrata. A observação direta do crescimento fatorial — constatar a intratabilidade computacional ao adicionar uma única cidade — produz compreensão intuitiva que nenhuma demonstração matemática substitui.
 
-### 5.2. Cobertura Curricular Alcançada
+O artefato Quantum Pong demonstrou-se particularmente eficaz na internalização do postulado da medição. A mecânica de penalização por medir no momento inadequado transforma-se gradualmente em intuição sobre o timing de observação — habilidade transferível para o design de algoritmos quânticos reais.
+
+### 6.2. Cobertura Curricular Alcançada
 
 | Componente | Status | Artefatos |
 |------------|--------|-----------|
@@ -249,19 +314,25 @@ O artefato Quantum Pong demonstrou-se particularmente eficaz na internalização
 
 *Tabela 6: Cobertura do currículo Hughes et al. (2021).*
 
-### 5.3. Limitações
+### 6.3. Limitações
 
 O presente trabalho apresenta limitações que devem ser reconhecidas:
 
-1. **Amostra unitária**: Trata-se de relato de experiência individual, sem grupo de controle para validação estatística da eficácia pedagógica.
+1. **Amostra unitária**: Trata-se de relato de experiência individual (n=1), sem grupo de controle para validação estatística da eficácia pedagógica.
 
-2. **Simulação clássica**: Todas as implementações quânticas foram executadas em simuladores, não em hardware quântico real. Os efeitos de ruído e decoerência não foram experimentados diretamente.
+2. **Viés de auto-relato**: As avaliações de aprendizado são baseadas em autoavaliação do próprio autor, sem validação externa por pares ou avaliadores independentes.
 
-3. **Escala limitada**: O QUBO solver foi testado apenas em instâncias pequenas (n ≤ 15), insuficientes para demonstrar vantagem sobre metaheurísticas clássicas otimizadas.
+3. **Generalização limitada**: Os resultados refletem o contexto específico do Ibmec BH e podem não ser diretamente transferíveis para outros contextos institucionais, curriculares ou demográficos.
 
-4. **Ausência de QAOA**: Embora discutido teoricamente, o algoritmo QAOA não foi implementado devido a limitações de tempo.
+4. **Simulação clássica**: Todas as implementações quânticas foram executadas em simuladores, não em hardware quântico real. Os efeitos de ruído e decoerência não foram experimentados diretamente.
 
-### 5.4. Trabalhos Futuros
+5. **Escala limitada**: O QUBO solver foi testado apenas em instâncias pequenas (n ≤ 15), insuficientes para demonstrar vantagem sobre metaheurísticas clássicas otimizadas.
+
+6. **Ausência de validação com outros aprendizes**: Não foi possível aplicar a metodologia proposta com outros estudantes para verificar reprodutibilidade dos resultados pedagógicos.
+
+7. **Ausência de QAOA**: Embora discutido teoricamente, o algoritmo QAOA não foi implementado devido a limitações de tempo.
+
+### 6.4. Trabalhos Futuros
 
 Extensões naturais deste trabalho incluem:
 
@@ -270,7 +341,7 @@ Extensões naturais deste trabalho incluem:
 3. **VRP completo**: Extensão para constraints de capacidade e janelas de tempo
 4. **Validação pedagógica**: Aplicação em turmas com avaliação sistemática de aprendizado
 
-### 5.5. Implicações para Formação em QSE
+### 6.5. Implicações para Formação em QSE
 
 A experiência sugere que o engenheiro de software quântico deve desenvolver competência em três domínios:
 
@@ -278,11 +349,13 @@ A experiência sugere que o engenheiro de software quântico deve desenvolver co
 2. **Modelagem matemática**: Tradução de problemas para formulações compatíveis com hardware quântico
 3. **Engenharia de software**: Domínio de frameworks (Qiskit, Cirq, PennyLane) e práticas de integração
 
-## 6. Conclusão
+---
+
+## 7. Conclusão
 
 Este trabalho apresentou um relato de experiência em aprendizado autodirigido de Engenharia de Software Quântica, estruturado em torno de Project-Based Learning. A combinação de fundamentação teórica rigorosa, implementação de artefatos interativos e análise de problemas industriais demonstrou-se pedagogicamente eficaz para a construção de competências em QSE.
 
-A contribuição principal reside na validação empírica de que a experiência direta do "gargalo clássico" constitui motivação superior para o estudo de alternativas quânticas. O código desenvolvido encontra-se disponível como recurso educacional aberto em [github.com/igorconrado/quantum-computing-university-project](https://github.com/igorconrado/quantum-computing-university-project).
+A contribuição principal reside na validação empírica de que a experiência direta do gargalo computacional clássico constitui motivação superior para o estudo de alternativas quânticas. O código desenvolvido encontra-se disponível como recurso educacional aberto em [github.com/igorconrado/quantum-computing-university-project](https://github.com/igorconrado/quantum-computing-university-project).
 
 A computação quântica transita inexoravelmente do laboratório para a indústria. Formar engenheiros capazes de navegar esta transição exige abordagens pedagógicas que transcendam o formalismo matemático abstrato, ancorando o aprendizado em problemas concretos e experiências tangíveis.
 
@@ -290,30 +363,34 @@ A computação quântica transita inexoravelmente do laboratório para a indúst
 
 ## Referências Bibliográficas
 
-Aiello, C. D., et al. (2021). Achieving a quantum smart workforce. *Quantum Science and Technology*, 6(3), 030501.
+Aiello, C. D., et al. (2021). Achieving a quantum smart workforce. *Quantum Science and Technology*, 6(3), 030501. https://doi.org/10.1088/2058-9565/abfa64
 
-Arute, F., et al. (2019). Quantum supremacy using a programmable superconducting processor. *Nature*, 574(7779), 505-510.
+Arute, F., et al. (2019). Quantum supremacy using a programmable superconducting processor. *Nature*, 574(7779), 505-510. https://doi.org/10.1038/s41586-019-1666-5
 
-Danish Quantum Use Cases. (2020). *Case 10: Optimised Route Planning with Quantum and AI*. KPMG / TDC Net.
+Combarro, E. F., Gonzalez-Castillo, S., & Di Meglio, A. (2022). *A Practical Guide to Quantum Machine Learning and Quantum Optimization*. Packt Publishing.
 
-Farhi, E., Goldstone, J., & Gutmann, S. (2014). A quantum approximate optimization algorithm. *arXiv preprint arXiv:1411.4028*.
+Danish Quantum Use Cases. (2020). *Case 10: Optimised Route Planning with Quantum and AI*. KPMG / TDC Net. Disponível em: https://kpmg.com/dk/en/home/insights/2020/09/danish-quantum-use-cases.html. Acesso em: 15 jan. 2025.
 
-Google Quantum AI. (2023). Suppressing quantum errors by scaling a surface code logical qubit. *Nature*, 614(7949), 676-681.
+Farhi, E., Goldstone, J., & Gutmann, S. (2014). A quantum approximate optimization algorithm. *arXiv preprint arXiv:1411.4028*. https://doi.org/10.48550/arXiv.1411.4028
 
-Grover, L. K. (1996). A fast quantum mechanical algorithm for database search. *Proceedings of the 28th Annual ACM Symposium on Theory of Computing*, 212-219.
+Google Quantum AI. (2023). Suppressing quantum errors by scaling a surface code logical qubit. *Nature*, 614(7949), 676-681. https://doi.org/10.1038/s41586-022-05434-1
 
-Hughes, C., Isaacson, J., Perry, A., Sun, R. F., & Turner, J. (2021). *Quantum Computing for the Quantum Curious*. Springer.
+Grover, L. K. (1996). A fast quantum mechanical algorithm for database search. *Proceedings of the 28th Annual ACM Symposium on Theory of Computing*, 212-219. https://doi.org/10.1145/237814.237866
 
-Kadowaki, T., & Nishimori, H. (1998). Quantum annealing in the transverse Ising model. *Physical Review E*, 58(5), 5355.
+Hughes, C., Isaacson, J., Perry, A., Sun, R. F., & Turner, J. (2021). *Quantum Computing for the Quantum Curious*. Springer. https://doi.org/10.1007/978-3-030-61601-4
 
-Krajcik, J. S., & Shin, N. (2014). Project-based learning. In R. K. Sawyer (Ed.), *The Cambridge Handbook of the Learning Sciences* (pp. 275-297). Cambridge University Press.
+IBM Quantum. (2023). *Qiskit Textbook*. Disponível em: https://qiskit.org/learn. Acesso em: 10 jan. 2025.
 
-Lucas, A. (2014). Ising formulations of many NP problems. *Frontiers in Physics*, 2, 5.
+Kadowaki, T., & Nishimori, H. (1998). Quantum annealing in the transverse Ising model. *Physical Review E*, 58(5), 5355. https://doi.org/10.1103/PhysRevE.58.5355
 
-Nielsen, M. A., & Chuang, I. L. (2010). *Quantum Computation and Quantum Information: 10th Anniversary Edition*. Cambridge University Press.
+Krajcik, J. S., & Shin, N. (2014). Project-based learning. In R. K. Sawyer (Ed.), *The Cambridge Handbook of the Learning Sciences* (pp. 275-297). Cambridge University Press. https://doi.org/10.1017/CBO9781139519526.018
 
-Seskir, Z. C., et al. (2022). Quantum games and interactive tools for quantum technologies outreach and education. *Optical Engineering*, 61(8), 081809.
+Lucas, A. (2014). Ising formulations of many NP problems. *Frontiers in Physics*, 2, 5. https://doi.org/10.3389/fphy.2014.00005
 
-Shor, P. W. (1994). Algorithms for quantum computation: discrete logarithms and factoring. *Proceedings of the 35th Annual Symposium on Foundations of Computer Science*, 124-134.
+Nielsen, M. A., & Chuang, I. L. (2010). *Quantum Computation and Quantum Information: 10th Anniversary Edition*. Cambridge University Press. https://doi.org/10.1017/CBO9780511976667
 
-Wootton, J. (2021). *Programming on Quantum Computers: Coding with Qiskit*. IBM Quantum Learning.
+Seskir, Z. C., et al. (2022). Quantum games and interactive tools for quantum technologies outreach and education. *Optical Engineering*, 61(8), 081809. https://doi.org/10.1117/1.OE.61.8.081809
+
+Shor, P. W. (1994). Algorithms for quantum computation: discrete logarithms and factoring. *Proceedings of the 35th Annual Symposium on Foundations of Computer Science*, 124-134. https://doi.org/10.1109/SFCS.1994.365700
+
+Wootton, J. (2021). *Programming on Quantum Computers: Coding with Qiskit*. IBM Quantum Learning. Disponível em: https://learning.quantum.ibm.com/. Acesso em: 12 jan. 2025.
